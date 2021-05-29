@@ -134,44 +134,32 @@ to the relatively low wind velocities.
 
 \section{Mathematical model}
 Consider dataset
-\[
+\begin{equation}
+  \label{eq:dset}
   \vec{D} = \left\{\vec{x}_i, \vec{u}_i\right\}, \quad i = 1, \dots, N
-\]
+\end{equation}
 where $\vec{x}_i = (x_i, y_i) \in \mathcal D \subset \R^2$ is a spatial point,
 $\vec{u}_i = (u_i, v_i) \in \R^2$ is the velocity field at point $i$.
-
-Assume that the velocity field $\vec u (\vec x)$ satisfies the
+Also, assume that the velocity field $\vec u (\vec x)$ satisfies the
 divergence-free condition, at least approximately:
-\[
+\begin{equation}
+  \label{eq:div-free}
   \nabla \cdot \vec u (\vec x) \approx 0.
-\]
-
-\textbf{Goal}: estimate the velocity field $\vec u  (\vec x)$ using the above
-condition.
-
-Instead of the true velocity field, we seek for estimator
-\[
-  \hat{\vec u} (\vec x; \vec \theta)
-\]
-parameterized by
-\[
-  \vec \theta \in \R^n
-\]    
-that satisfies
-the measurements and the divergence-free condition
-\[
+\end{equation}
+We seek an estimator $\hat{\vec u} (\vec x; \vec \theta)\approx \vec u(\vec x)$
+parameterized by $\vec \theta \in \R^n$ that satisfies
+the measurements~\eqref{eq:dset} and the divergence-free
+condition~\eqref{eq:div-free} simultaneously
+\begin{equation}
   \arg \min_{\vec \theta} \quad 
-  \mathbb E \left[ \norm{\vec u(\vec x) - \hat{\vec u}(\vec x; \vec{\theta})}^2_{L^2(\R^2)} \right] +
+  \mathbb E \left[
+    \norm{\vec u(\vec x) - \hat{\vec u}(\vec x; \vec{\theta})}^2_2
+  \right] \ + \ 
   \gamma \norm{\nabla \cdot \hat{\vec u}(\vec x; \vec{\theta})}^2_{L^2(\R)} 
-\]
-where $\gamma$ is a regularization parameter that determines how strongly
+\end{equation}
+where $\mathbb E$ is expectation
+and $\gamma$ is a regularization parameter that determines how strongly
 the divergence-free condition is enforced.
-
-\[
-  \arg \min_\theta \quad 
-  \mathbb E \left[ \norm{\vec u(\vec x) - \hat{\vec u}(\vec x; \vec{\theta})}^2_{L^2(\R^2)} \right] +
-  \gamma \norm{\nabla \cdot \hat{\vec u}(\vec x; \vec{\theta})}^2_{L^2(\R)} 
-\]
 
 Finite number of measurements to evaluate the first term. 
 
@@ -182,7 +170,7 @@ Then the problem is to find
 \[
   \arg \min_\theta \quad
   \frac{1}{N} \sum_{i=1}^N \norm{\vec u_i - \hat{\vec u}(\vec x_i; \theta)}^2_2
-  \ + \;
+  \ + \ 
   \frac{\gamma}{P} \sum_{i=1}^P \left( \nabla \cdot \hat{\vec u}(\vec x_i; \theta)\right)^2
 \]
 
