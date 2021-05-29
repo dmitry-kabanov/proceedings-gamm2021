@@ -87,8 +87,28 @@ expansions.
 %% maketitle must follow the abstract.
 \maketitle                   % Produces the title.
 
-\section{First section}
-\subsection{First subsection}
+\section{Introduction}
+
+An important method of finding relations from given dataset of observations
+is through fitting a function to this dataset.
+The function should be ``rich'' enough so that the relations between independent
+and dependent variables in the dataset can be modeled properly.
+Recently, special nonlinear functions called neural networks have emerged for
+the purpose of finding relations in the data, particularly, an important class
+of functions named \emph{physics-informed neural networks} ??? has emerged for
+the purposes of fitting the data, for which one can postulate important physical
+properties of this data.
+
+We apply physics-informed neural networks to the problem of estimating flows
+with divergence-free property, namely, flows of incompressible fluids.
+For that, we train the network to not only satisfy the given dataset of
+observations but also to approximately satisfy the divergence-free condition.
+
+We demonstrate the performance of such networks on two examples.
+One example is based on the truly divergence-free data.
+The second example is based on the dataset of wind velocity observations over
+Sweden in 2018, where we use an assumption that the wind is incompressible due
+to the relatively low wind velocities.
 
 
 
