@@ -64,7 +64,25 @@
 %%    Abstract is required.
 \AbstractLanguage[EN]
 \begin{abstract}
-abstract
+We apply neural networks to the problem of estimating wind flow from given
+sparse observations.
+We assume that the wind speed is low, hence, the flow is incompressible,
+namely, divergence-free.
+Following modern trend of combining data and models together to obtain
+physics-informed neural networks, we reconstruct the flow by training a neural
+network in such manner that it not
+only matches the observations but also satisfies the incompressibility condition.
+This condition is infeasible to satisfy exactly, and to overcome this,
+the network training is reduced from constrained optimization
+problem to an unconstrained one via
+Lagrange relaxation, where the objective function consists of two terms: one is
+responsible for matching the observations and another one approximately
+satisfies the constraint of flow incompressibility.
+The balance between these
+two terms is found through a cross-validation procedure.  We apply this
+approach to the dataset from windmills in Sweden and compare its effectiveness
+with a more traditional technique of flow reconstruction via Fourier
+expansions.
 \end{abstract}
 %% maketitle must follow the abstract.
 \maketitle                   % Produces the title.
