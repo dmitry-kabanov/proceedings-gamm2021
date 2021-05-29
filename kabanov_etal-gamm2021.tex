@@ -129,6 +129,59 @@ The second example is based on the dataset of wind velocity observations over
 Sweden in 2018, where we use an assumption that the wind is incompressible due
 to the relatively low wind velocities.
 
+\section{Mathematical model}
+Consider dataset
+\[
+  \vec{D} = \left\{\vec{x}_i, \vec{u}_i\right\}, \quad i = 1, \dots, N
+\]
+where $\vec{x}_i = (x_i, y_i) \in \mathcal D \subset \R^2$ is a spatial point,
+$\vec{u}_i = (u_i, v_i) \in \R^2$ is the velocity field at point $i$.
+
+Assume that the velocity field $\vec u (\vec x)$ satisfies the
+divergence-free condition, at least approximately:
+\[
+  \nabla \cdot \vec u (\vec x) \approx 0.
+\]
+
+\textbf{Goal}: estimate the velocity field $\vec u  (\vec x)$ using the above
+condition.
+
+Instead of the true velocity field, we seek for estimator
+\[
+  \hat{\vec u} (\vec x; \vec \theta)
+\]
+parameterized by
+\[
+  \vec \theta \in \R^n
+\]    
+that satisfies
+the measurements and the divergence-free condition
+\[
+  \arg \min_{\vec \theta} \quad 
+  \mathbb E \left[ \norm{\vec u(\vec x) - \hat{\vec u}(\vec x; \vec{\theta})}^2_{L^2(\R^2)} \right] +
+  \gamma \norm{\nabla \cdot \hat{\vec u}(\vec x; \vec{\theta})}^2_{L^2(\R)} 
+\]
+where $\gamma$ is a regularization parameter that determines how strongly
+the divergence-free condition is enforced.
+
+\[
+  \arg \min_\theta \quad 
+  \mathbb E \left[ \norm{\vec u(\vec x) - \hat{\vec u}(\vec x; \vec{\theta})}^2_{L^2(\R^2)} \right] +
+  \gamma \norm{\nabla \cdot \hat{\vec u}(\vec x; \vec{\theta})}^2_{L^2(\R)} 
+\]
+
+Finite number of measurements to evaluate the first term. 
+
+Introduce an additional set of $P$ points, at which
+the divergence-free condition is enforced.
+
+Then the problem is to find
+\[
+  \arg \min_\theta \quad
+  \frac{1}{N} \sum_{i=1}^N \norm{\vec u_i - \hat{\vec u}(\vec x_i; \theta)}^2_2
+  \ + \;
+  \frac{\gamma}{P} \sum_{i=1}^P \left( \nabla \cdot \hat{\vec u}(\vec x_i; \theta)\right)^2
+\]
 
 
 
