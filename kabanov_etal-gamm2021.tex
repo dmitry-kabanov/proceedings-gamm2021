@@ -117,7 +117,7 @@ The function should be ``rich'' enough so that the relations between independent
 and dependent variables in the dataset can be modeled properly.
 Recently, special nonlinear functions called neural networks have emerged for
 the purpose of finding relations in the data, particularly, an important class
-of functions named \emph{physics-informed neural networks} ??? has emerged for
+of functions named \emph{physics-informed neural networks} \cite{RaissiEtAl2019} has emerged for
 the purposes of fitting the data, for which one can postulate important physical
 properties of this data.
 
@@ -179,8 +179,8 @@ As an estimator function $\hat{\vec u}(\vec x; \theta)$, we use a neural network
 of type ``multilayer perceptron''.
 
 \textbf{Other details}.
-For solving the optimization problem~\eqref{eq:opt-problem}, we use ADAM ???
-optimizer.
+For solving the optimization problem~\eqref{eq:opt-problem}, we use ADAM
+optimizer~\cite{KingmaBa2014}.
 Also, the values of the parameter vector $\theta$ are averaged using exponential
 averaging, and the averaged value is used for making predictions with the
 trained model.
@@ -228,7 +228,8 @@ reconstruction of the wind fields over Sweden.
 The data are collected from 165 weather stations in 2018, with measurements
 collected hourly but a lot of missing data points from different stations.
 
-As the base model, we use Inverse Distance Weighting (IDW) model, which
+As the base model, we use Inverse Distance Weighting (IDW)
+model~\cite{Cellura2008}, which
 estimates velocity at point $\vec x_j$ by averaging weighted observations:
 \begin{equation}
   \label{eq:base-model}
@@ -289,34 +290,17 @@ of neural networks.
 
 \begin{thebibliography}{1}
 
-\bibitem{bib1}% 
- F.\,M. Firstauthorfamilyname, F.\,M. Secondauthorfamilyname, and
-  C.~Lastauthorfamilyname,
- Abbreviatedjournalname \textbf{volume}, page (year).
+\bibitem{RaissiEtAl2019}
+  M.~Raissi, P.~Perdikaris, and G.\,E.~Karniadakis.
+  J. Comput. Phys. \textbf{378}, 686-707 (2019).
 
-\bibitem{bib2}% 
- F.~Examplename and  I.\,E. Anotherauthorname,
- phys. stat. sol. (a) \textbf{1}, 111 (2050).
+\bibitem{Cellura2008}
+  M.~Cellura, G.~Cirrincione, A.~Marvuglia, A.~Miraoui.
+  Renew. Energ., \textbf{33}, 1251-1266 (2008).
 
-\bibitem{bib3}% 
- A.~Firstauthorname,  B.~Secondauthorname,  and
-  C.~Thirdauthorname,
-Here Goes the Title of the Book (Publisher, City, year), p.\,111.
-
-\bibitem{bib4}% 
- A.~Firsteditorname,  B.~Secondeditorname,  and
-  C.~Thirdeditorname (eds.),
-Here Goes the Title of the Edited Book (Wiley-VCH, Berlin, 2050), p.\,111.
-
-\bibitem{bib5}% 
- D.~Contributorname,
- in: The Title of the Book, edited by The Name of the Editors, Followed by
-  the Title of the Series of Books (Publisher, City, year), chap.~1.
-
-\bibitem{bib6}% 
- A.~Lastbutnotleastname,
- Proceedings 1st Dummy Conference on Citation Formatting, City,
-  Country, Part A (Publisher, City, year),  pp.\,1--11.
+\bibitem{KingmaBa2014}  
+  D.\,P.~Kingma, J.~Ba.
+  arXiv preprint, arXiv:1412.6980 (2014).
 
 \end{thebibliography}
 
