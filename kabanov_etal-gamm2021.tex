@@ -151,37 +151,24 @@ parameterized by $\vec \theta \in \R^n$ that satisfies
 the measurements~\eqref{eq:dset} and the divergence-free
 condition~\eqref{eq:div-free} simultaneously
 \begin{equation}
-  \arg \min_{\vec \theta} \quad 
-  \mathbb E \left[
-    \norm{\vec u(\vec x) - \hat{\vec u}(\vec x; \vec{\theta})}^2_2
-  \right] \ + \ 
-  \gamma \norm{\nabla \cdot \hat{\vec u}(\vec x; \vec{\theta})}^2_{L^2(\R)} 
-\end{equation}
-where $\mathbb E$ is expectation
-and $\gamma$ is a regularization parameter that determines how strongly
-the divergence-free condition is enforced.
-
-Finite number of measurements to evaluate the first term. 
-
-Introduce an additional set of $P$ points, at which
-the divergence-free condition is enforced.
-
-Then the problem is to find
-\[
+  \label{eq:opt-problem}
   \arg \min_\theta \quad
-  \frac{1}{N} \sum_{i=1}^N \norm{\vec u_i - \hat{\vec u}(\vec x_i; \theta)}^2_2
+  \frac{1}{N} \sum_{i=1}^N \norm{\vec u_i - \hat{\vec u}(\vec x_i; \vec\theta)}^2_2
   \ + \ 
-  \frac{\gamma}{P} \sum_{i=1}^P \left( \nabla \cdot \hat{\vec u}(\vec x_i; \theta)\right)^2
-\]
+  \frac{\gamma}{P} \sum_{i=1}^P \left( \nabla \cdot \hat{\vec u}(\vec x_i; \vec\theta)\right)^2
+\end{equation}
+where 
+$\gamma$ is regularization parameter that determines how strongly
+the divergence-free condition is enforced, 
+and $P$ points, at which the divergence-free condition is enforced, are different
+from the measurement locations.
 
-\textbf{Estimator function}.
 As an estimator function $\hat{\vec u}(\vec x; \theta)$, we use a neural network
-of type ``multilayer perceptron''.
-
-\textbf{Other details}.
-For solving the optimization problem~\eqref{eq:opt-problem}, we use ADAM
+of type ``multilayer perceptron''\cite{GoodfellowEtAl2016}, which is trained
+(that is, parameter $\vec\theta$ is fitted) by solving 
+the optimization problem~\eqref{eq:opt-problem} via ADAM
 optimizer~\cite{KingmaBa2014}.
-Also, the values of the parameter vector $\theta$ are averaged using exponential
+Also, iterations of $\vec\theta$ are averaged using exponential
 averaging, and the averaged value is used for making predictions with the
 trained model.
 
@@ -298,9 +285,13 @@ of neural networks.
   M.~Cellura, G.~Cirrincione, A.~Marvuglia, A.~Miraoui.
   Renew. Energ., \textbf{33}, 1251-1266 (2008).
 
-\bibitem{KingmaBa2014}  
+\bibitem{KingmaBa2014}
   D.\,P.~Kingma, J.~Ba.
   arXiv preprint, arXiv:1412.6980 (2014).
+
+\bibitem{GoodfellowEtAl2016}
+  I.~Goodfellow, Y.~Bengio, and A.~Courville.
+  Deep Learning (MIT Press, 2016).
 
 \end{thebibliography}
 
