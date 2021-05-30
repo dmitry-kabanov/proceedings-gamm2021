@@ -185,6 +185,34 @@ Also, the values of the parameter vector $\theta$ are averaged using exponential
 averaging, and the averaged value is used for making predictions with the
 trained model.
 
+\section{Numerical examples}
+
+\textbf{Example 1}.
+We generate synthetic noiseless data
+  $\left\{(x_i, y_i), \vec{u}_i\right\}$, $i = 1, \dots, 10$,
+where $\vec u(x, y) = ( \cos x \, \sin y, -\sin x \, \cos y)^\T$
+and points $(x_i, y_i)$ are sampled uniformly from domain $[0; 2\pi]^2$.
+This dataset is a Taylor--Green 2D vortex fixed in time.
+Test data are located on the $21\times21$ uniform grid in this domain.
+
+Figure~\ref{fig:tg2d} shows the comparison of the prediction errors of two
+networks: for one, parameter $\gamma$ is set to zero, such that the network is
+trained to only match the dataset, for another, parameter $\gamma = 10^{-2}$.
+We can see that the neural network trained to satisfy both  the dataset and the
+divergence-free condition, gives smaller prediction errors, especially at
+locations at distance from the measurement locations.
+
+\begin{figure}
+  \centering
+  \includegraphics[width=4in]{assets/error-fields-comparison.pdf}
+  \caption{Comparison of the prediction errors for two neural networks:
+  a) neural network trained with $\gamma=0$; b) neural network trained with
+  $\gamma=10^{-2}$. Red arrows show the measurement locations and corresponding
+  velocity directions.}%
+  \label{fig:tg2d}
+\end{figure}
+
+
 
 
 \begin{acknowledgement}
