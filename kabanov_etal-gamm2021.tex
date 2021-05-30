@@ -203,16 +203,67 @@ divergence-free condition, gives smaller prediction errors, especially at
 locations at distance from the measurement locations.
 
 \begin{figure}
-  \centering
-  \includegraphics[width=4in]{assets/error-fields-comparison.pdf}
+\begin{minipage}{0.48\textwidth}
+  \includegraphics[width=3.3in]{assets/error-fields-comparison.pdf}
   \caption{Comparison of the prediction errors for two neural networks:
-  a) neural network trained with $\gamma=0$; b) neural network trained with
-  $\gamma=10^{-2}$. Red arrows show the measurement locations and corresponding
+  a) $\gamma=0$; b) $\gamma=10^{-2}$.
+  Red arrows show the measurement locations and corresponding
   velocity directions.}%
   \label{fig:tg2d}
+\end{minipage}
+\hfill
+\begin{minipage}{0.48\textwidth}
+  \centering
+  \includegraphics[scale=0.42]{assets/r2-vs-model.pdf}
+  \caption{Comparison of 30 neural-network models (points)
+    with the base IDW model (dashed line).
+  The best found model corresponds to model index 21.}%
+  \label{fig:r2-vs-model}
+\end{minipage}
 \end{figure}
 
+\textbf{Example 2}.
+We apply a neural network with div-free regularization to the problem of
+reconstruction of the wind fields over Sweden.
+The data are collected from 165 weather stations in 2018, with measurements
+collected hourly but a lot of missing data points from different stations.
 
+As the base model, we use Inverse Distance Weighting (IDW) model, which
+estimates velocity at point $\vec x_j$ by averaging weighted observations:
+\begin{equation}
+  \label{eq:base-model}
+  \hat{\vec u}_{\text{IDW}}(\vec x_j) =
+  \frac{\sum_{i=1}^N W(r_{i,j}) \vec u(\vec x_j)}{\sum_{i=1}^N W(r_{i,j})}
+\end{equation}
+where $W$ is a weight, namely, decaying function of the distance $r_{i, j}$.
+
+To assess the quality of the model, we estimate the prediction error
+by selecting at random from the dataset T time snapshots and computing
+an average $R^2$ score using five-fold cross-validation:
+\[
+  R^2 = 1 - \frac{%
+    \sum_{i=1}^T \sum_{j=1}^K \frac{1}{N_{ij}'}
+    \sum_{k=1}^{N_{ij}'} \norm{\vec{u}_{ijk} - \hat{\vec{u}}_{ijk}}^2_2}
+  {%
+    \sum_{i=1}^T \sum_{j=1}^K \frac{1}{N_{ij}'}
+    \sum_{k=1}^{N_{ij}'} \norm{\vec{u}_{ijk}}^2_2}
+\]
+where $N_{ij}'$ denotes number of test measurements for the $i$th time snapshot
+and $j$th cross-validation fold.
+We choose $T=500$ and $K=5$, therefore, to compute $R^2$ score 2500 neural
+networks are required with a given configuration of hyperparameters.
+
+We train neural networks with the configuration specified by a triplet: 
+$\gamma \in \{0, 10^{-4}, 10^{-3}, 10^{-2}, 10^{-1}\}$, 
+number of neurons in the 1st hidden layer: $h_1 \in \{20, 30\}$,
+number of neurons in the 2nd hidden layer: $h_2 \in \{0, 10, 20\}$.
+
+Figure~\ref{fig:r2-vs-model} shows comparison of the neural networks with these
+configurations against the base model~\eqref{eq:base-model}.
+The best $R^2$ score is achieved by the model 21 with parameters $\gamma=0.01$,
+$h_1=20$, $h_2=20$.
+However, one can see that the $R^2=62.5$ of the best model is relatively close
+to the $R^2=0.61$ of the base model.
 
 
 \begin{acknowledgement}
