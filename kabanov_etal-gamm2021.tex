@@ -265,6 +265,19 @@ $h_1=20$, $h_2=20$.
 However, one can see that the $R^2=62.5$ of the best model is relatively close
 to the $R^2=0.61$ of the base model.
 
+\section{Conclusions}
+
+We applied physics-informed neural networks to estimation of divergence-free
+flows.
+Application to the synthetic data, which are known to be truly divergence-free,
+shows that the addition of the divergence-free regularization significantly
+improves the prediction error of the neural network, particularly, in the areas
+with know measurement data.
+Application to the wind estimation over Sweden shows that divergence-free neural
+network can achieve better, although marginally, prediction performance than
+the base inverse distaince weighting model.
+Overall, addition of the physics regularizer improves the prediction performance
+of neural networks.
 
 \begin{acknowledgement}
   An acknowledgement may be placed at the end of the article.
