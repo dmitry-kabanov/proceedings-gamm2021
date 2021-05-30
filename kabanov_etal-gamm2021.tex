@@ -101,8 +101,7 @@ reconstruction over Sweden.
 %% maketitle must follow the abstract.
 \maketitle                   % Produces the title.
 
-\section{Introduction}
-
+\textbf{Introduction}.
 An important method of finding relations from given dataset of observations
 is through fitting a function to this dataset.
 The function should be ``rich'' enough so that the relations between independent
@@ -124,7 +123,7 @@ The second example is based on the dataset of wind velocity observations over
 Sweden in 2018, where we use an assumption that the wind is incompressible due
 to the relatively low wind velocities.
 
-\section{Mathematical model}
+\textbf{Mathematical model}.
 Consider dataset
 \begin{equation}
   \label{eq:dset}
@@ -164,9 +163,11 @@ Also, iterations of $\vec\theta$ are averaged using exponential
 averaging, and the averaged value is used for making predictions with the
 trained model.
 
-\section{Numerical examples}
+\textbf{Numerical examples}.
+We apply divergence-free neural networks to truly divergence-free dataset
+(Example~1) and to the wind estimation over Sweden (Example~2).
 
-\textbf{Example 1}.
+\emph{Example 1}.
 We generate synthetic noiseless data
   $\left\{(x_i, y_i), \vec{u}_i\right\}$, $i = 1, \dots, 10$,
 where $\vec u(x, y) = ( \cos x \, \sin y, -\sin x \, \cos y)^\T$
@@ -201,7 +202,7 @@ locations at distance from the measurement locations.
 \end{minipage}
 \end{figure}
 
-\textbf{Example 2}.
+\emph{Example 2}.
 We apply a neural network with div-free regularization to the problem of
 reconstruction of the wind fields over Sweden.
 The data are collected from 165 weather stations in 2018, with measurements
@@ -245,8 +246,7 @@ $h_1=20$, $h_2=20$.
 However, one can see that the $R^2=62.5$ of the best model is relatively close
 to the $R^2=0.61$ of the base model.
 
-\section{Conclusions}
-
+\textbf{Conclusions}.
 We applied physics-informed neural networks to estimation of divergence-free
 flows.
 Application to the synthetic data, which are known to be truly divergence-free,
