@@ -132,8 +132,8 @@ Consider dataset
   \label{eq:dset}
   \vec{D} = \left\{\vec{x}_i, \vec{u}_i\right\}, \quad i = 1, \dots, N
 \end{equation}
-where $\vec{x}_i = (x_i, y_i) \in \mathcal D \subset \R^2$ is a spatial point,
-$\vec{u}_i = (u_i, v_i) \in \R^2$ is the velocity field at point $i$.
+where $\vec{x}_i \in \R^2$ is a spatial point,
+$\vec{u}_i  \in \R^2$ is the velocity field at point $i$.
 Also, assume that the velocity field $\vec u (\vec x)$ satisfies the
 divergence-free condition, at least approximately:
 \begin{equation}
@@ -143,7 +143,7 @@ divergence-free condition, at least approximately:
 We seek an estimator $\hat{\vec u} (\vec x; \vec \theta)\approx \vec u(\vec x)$
 parameterized by $\vec \theta \in \R^n$ that satisfies
 the measurements~\eqref{eq:dset} and the divergence-free
-condition~\eqref{eq:div-free} simultaneously
+condition~\eqref{eq:div-free} simultaneously in a least-squares sense:
 \begin{equation}
   \label{eq:opt-problem}
   \arg \min_\theta \quad
@@ -153,14 +153,15 @@ condition~\eqref{eq:div-free} simultaneously
 \end{equation}
 where 
 $\gamma$ is regularization parameter that determines how strongly
-the divergence-free condition is enforced, 
-and $P$ points, at which the divergence-free condition is enforced, are different
+the divergence-free condition is enforced,
+and $P$ the number of points, at which the divergence-free condition is
+enforced. Note that the latter points are different
 from the measurement locations.
 
-As an estimator function $\hat{\vec u}(\vec x; \theta)$, we use a neural network
+As an estimator function $\hat{\vec u}(\vec x; \vec\theta)$, we use a neural network
 of type ``multilayer perceptron''\cite{GoodfellowEtAl2016}, which is trained
 (that is, parameter $\vec\theta$ is fitted) by solving 
-the optimization problem~\eqref{eq:opt-problem} via ADAM
+the optimization problem~\eqref{eq:opt-problem} using ADAM
 optimizer~\cite{KingmaBa2014}.
 Also, iterations of $\vec\theta$ are averaged using exponential
 averaging, and the averaged value is used for making predictions with the
