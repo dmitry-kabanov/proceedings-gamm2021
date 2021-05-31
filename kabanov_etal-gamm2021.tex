@@ -88,15 +88,17 @@
 \begin{abstract}
 We apply neural networks to the problem of estimating divergence-free flows from
 given sparse observations.
-Following modern trend of combining data and models together to obtain
-physics-informed neural networks, we reconstruct the flow by training a neural
-network in such manner that it not
+Following the modern trend of combining data and models in
+physics-informed neural networks, we reconstruct the velocity flow
+by training a neural network in such a manner that the network not
 only matches the observations but also approximately satisfies the
-incompressibility condition.
-The balance between two terms is found through a cross-validation procedure.
+divergence-free condition.
+The assumption is that the balance between the two terms allows
+to obtain the model which has better prediction performance than a usual
+data-driven neural network.
 We apply this
-approach to synthetic dataset with truly divergence-free flow and to wind
-reconstruction over Sweden.
+approach to the reconstruction of truly divergence-free flow from the noiseless
+synthetic data and to the reconstruction of wind velocity fields over Sweden.
 \end{abstract}
 %% maketitle must follow the abstract.
 \maketitle                   % Produces the title.
