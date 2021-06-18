@@ -86,15 +86,15 @@
 %%    Abstract is required.
 \AbstractLanguage[EN]
 \begin{abstract}
-We apply neural networks to the problem of estimating divergence-free flows from
-given sparse observations.
+We apply neural networks to the problem of estimating divergence-free velocity
+flows from given sparse observations.
 Following the modern trend of combining data and models in
 physics-informed neural networks, we reconstruct the velocity flow
 by training a neural network in such a manner that the network not
 only matches the observations but also approximately satisfies the
 divergence-free condition.
 The assumption is that the balance between the two terms allows
-to obtain the model which has better prediction performance than a usual
+to obtain the model that has better prediction performance than a usual
 data-driven neural network.
 We apply this
 approach to the reconstruction of truly divergence-free flow from the noiseless
@@ -130,10 +130,11 @@ to the relatively low wind velocities.
 Consider dataset
 \begin{equation}
   \label{eq:dset}
-  \vec{D} = \left\{\vec{x}_i, \vec{u}_i\right\}, \quad i = 1, \dots, N
+  \left\{\vec{x}_i, \vec{u}_i\right\}, \quad i = 1, \dots, N,
 \end{equation}
-where $\vec{x}_i \in \R^2$ is a spatial point,
-$\vec{u}_i  \in \R^2$ is the velocity field at point $i$.
+where $\vec{x}_i \in \R^2$ is the $i$th spatial point,
+$\vec{u}_i  \in \R^2$ the velocity at this  point,
+$N$ total number of measurement points.
 Also, assume that the velocity field $\vec u (\vec x)$ satisfies the
 divergence-free condition, at least approximately:
 \begin{equation}
@@ -182,7 +183,7 @@ Test data are located on the $21\times21$ uniform grid in this domain.
 Figure~\ref{fig:tg2d} shows the comparison of the prediction errors of two
 networks: for one, parameter $\gamma$ is set to zero, such that the network is
 trained to only match the dataset, for another, parameter $\gamma = 10^{-2}$.
-We can see that the neural network trained to satisfy both  the dataset and the
+We can see that the neural network, trained to satisfy both the dataset and the
 divergence-free condition, gives smaller prediction errors, especially at
 locations at distance from the measurement locations.
 
@@ -190,7 +191,7 @@ locations at distance from the measurement locations.
 \begin{minipage}{0.48\textwidth}
   \includegraphics[width=3.3in]{assets/error-fields-comparison.pdf}
   \caption{Comparison of the prediction errors for two neural networks:
-    a) $\gamma=0$; b) $\gamma=10^{-2}$.
+    left) $\gamma=0$; right) $\gamma=10^{-2}$.
     Red arrows show the measurement locations and corresponding
   velocity directions.}%
   \label{fig:tg2d}
@@ -262,12 +263,12 @@ flows.
 Application to the synthetic data, which are known to be truly divergence-free,
 shows that the addition of the divergence-free regularization significantly
 improves the prediction error of the neural network, particularly, in the areas
-with know measurement data.
+with known measurement data.
 Application to the wind estimation over Sweden shows that divergence-free neural
 network can achieve better, although marginally, prediction performance than
-the base inverse distaince weighting model.
-Overall, addition of the physics regularizer improves the prediction performance
-of neural networks.
+the base inverse distance weighting model.
+Overall, addition of the physics-informed regularizer improves the prediction
+performance of neural networks.
 
 \begin{acknowledgement}
   The authors greatfully acknowledge research funding from the Alexander von
